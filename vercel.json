@@ -9,18 +9,22 @@
       "src": "food-frontend/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist"
+        "distDir": "food-frontend/dist",
+        "buildCommand": "cd food-frontend && npm install && npm run build"
       }
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "food-backend/server.js"
+      "dest": "/food-backend/server.js"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "food-frontend/dist/$1"
+      "dest": "/food-frontend/dist/$1"
     }
   ]
 } 
